@@ -152,7 +152,7 @@ DigitalShield2/
 │
 ├── outputs/                    # Generated output files (gitignored)
 │   ├── all_risk_scores.csv     # All records with risk scores
-│   ├── high_risk_records.csv   # Records with risk_score > 6.0
+│   ├── high_risk_records.csv   # Records with risk_score > 8.0
 │   └── high_risk_records.json  # Same, in JSON format
 │
 ├── .streamlit/
@@ -189,11 +189,6 @@ source venv/bin/activate
 
 ### 3. Install Dependencies
 ```bash
-pip install pandas numpy scikit-learn sqlalchemy psycopg2-binary streamlit plotly
-```
-
-Or if a `requirements.txt` is present:
-```bash
 pip install -r requirements.txt
 ```
 
@@ -205,7 +200,7 @@ All settings are centralised in `src/config.py`:
 
 ```python
 # Risk threshold — records above this score are "High Risk"
-HIGH_RISK_THRESHOLD = 6.0
+HIGH_RISK_THRESHOLD = 8.0
 
 # Isolation Forest hyperparameters
 ISOLATION_FOREST = {
@@ -256,7 +251,7 @@ STEP 4: Preparing features for model
 STEP 5: Training Isolation Forest
 STEP 6: Applying weighted hybrid risk scoring
 STEP 7: Generating explainability reasons
-STEP 8: Extracting high-risk records (threshold > 6.0)
+STEP 8: Extracting high-risk records (threshold > 8.0)
 ================================================================
   PIPELINE COMPLETE
   Total records processed : 523,412
@@ -296,7 +291,7 @@ streamlit run dashboard.py
 | **Filtered Data Table** | Searchable / filterable table with progress bars |
 
 ### Sidebar Filters
-- **Risk Score Range** — slider from 0.0 to 10.0 (default: 6.0–10.0)
+- **Risk Score Range** — slider from 0.0 to 10.0 (default: 8.0–10.0)
 - **Age Range** — slider across full age range
 - **Gender** — dropdown filter
 - **Search** — free-text search by PNR, name, or user ID
@@ -310,7 +305,7 @@ All outputs are saved to the `outputs/` directory:
 | File | Description |
 |---|---|
 | `outputs/all_risk_scores.csv` | All records with `risk_score` + `reason` columns |
-| `outputs/high_risk_records.csv` | Only records with `risk_score > 6.0`, sorted descending |
+| `outputs/high_risk_records.csv` | Only records with `risk_score > 8.0`, sorted descending |
 | `outputs/high_risk_records.json` | Same high-risk records in JSON format |
 
 ### Output Columns

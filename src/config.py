@@ -66,7 +66,7 @@ FEATURE_COLS = [
 # RISK SCORING
 # ═══════════════════════════════════════════════════════════════════════════════
 
-HIGH_RISK_THRESHOLD = 6.0
+HIGH_RISK_THRESHOLD = 8.0
 
 # Weighted boost signals (multiplicative approach)
 # Final: risk_score = base_ml_score * (1.0 + sum_of_triggered_weights)

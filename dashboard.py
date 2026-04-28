@@ -150,7 +150,7 @@ except FileNotFoundError:
 with st.sidebar:
     st.markdown("### 🔍 Filters")
     risk_min, risk_max = st.slider(
-        "Risk Score Range", 0.0, 10.0, (6.0, 10.0), 0.1,
+        "Risk Score Range", 0.0, 10.0, (8.0, 10.0), 0.1,
         help="Filter records by risk score range"
     )
     age_range = st.slider(
@@ -206,7 +206,7 @@ st.markdown("""
 total_records = len(df_all)
 high_risk_count = len(df_high)
 critical_count = len(df_all[df_all["risk_score"] >= 9.0])
-minor_risk = len(df_all[(df_all["age"] < 18) & (df_all["risk_score"] > 6.0)])
+minor_risk = len(df_all[(df_all["age"] < 18) & (df_all["risk_score"] > 8.0)])
 avg_score = df_all["risk_score"].mean()
 filtered_count = len(filtered)
 
@@ -238,7 +238,7 @@ with c1:
         labels={"risk_score": "Risk Score", "count": "Records"},
         title="Risk Score Distribution (Weighted Multiplicative)"
     )
-    fig_hist.add_vline(x=6.0, line_dash="dash", line_color="#f87171", annotation_text="Threshold (6.0)")
+    fig_hist.add_vline(x=8.0, line_dash="dash", line_color="#f87171", annotation_text="Threshold (8.0)")
     fig_hist.update_layout(**DARK_LAYOUT)
     st.plotly_chart(fig_hist, use_container_width=True)
 
@@ -273,7 +273,7 @@ with c3:
         opacity=0.6, title="Age vs Risk Score",
         labels={"age": "Age", "risk_score": "Risk Score"}
     )
-    fig_scatter.add_hline(y=6.0, line_dash="dash", line_color="#f87171", opacity=0.5)
+    fig_scatter.add_hline(y=8.0, line_dash="dash", line_color="#f87171", opacity=0.5)
     fig_scatter.add_vline(x=18, line_dash="dot", line_color="#fbbf24", opacity=0.5, annotation_text="Minor threshold")
     fig_scatter.update_layout(**DARK_LAYOUT)
     st.plotly_chart(fig_scatter, use_container_width=True)
